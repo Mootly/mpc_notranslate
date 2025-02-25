@@ -10,25 +10,21 @@
  *  - protect()
  *    Sets speficied elements to no translate.
  * *** Usage Example ---------------------------------------------------------- *
- * Need both load and scroll listeners
  * let mp = {
- *   datetime: new mpc_dateTimeOperations(),
+ *   notranslate: new mpc_notranslate(exclusions, auto),
  *   ...
  * };
- * let nowDate      = mpw.datetime.getDate();
- * let nowTime      = mpw.datetime.getTime();
- * let nowDateTime  = mpw.datetime.getDateTime();
- * let success      = mpw.datetime.autofill('all|date|time|datetime','classname');
- * let success      = mpw.datetime.countTime('time|datetime''classname');
+ * if auto set to false, use an event listener
+ * window.addEventListener('load', (e) => { mp.notranslate.protect(););
  * --- Revision History ------------------------------------------------------- *
- * 2023-11-15 | Started typescript version.
+ * 2025-02-25 | Finished draft of typescript version.
  * ---------------------------------------------------------------------------- */
 class mpc_notranslate {
   protList          : string;
   protElems         : NodeListOf<HTMLElement>;
   constructor(
-    pAuto : boolean = true, 
-    pList : string  = 'abbr, acronym, address, cite, code, kbd, pre, samp, var, *[lang]:not([lang=en-US])'
+    pList : string  = 'abbr, acronym, address, cite, code, kbd, pre, samp, var, *[lang]:not(:lang(en))',
+    pAuto : boolean = true
   ) {
     this.protList  = pList;
     if (pAuto) { this.protect(); }
@@ -36,11 +32,10 @@ class mpc_notranslate {
                     // The lone method.                                         *
   protect() {
     this.protElems  = document.querySelectorAll(this.protList);
-    this.protElems?.forEach ((el) => { 
-      el.classList.add('notranslate'); 
-      el.setAttribute('translate','no'); 
+    this.protElems?.forEach ((el) => {
+      el.classList.add('notranslate');
+      el.setAttribute('translate','no');
     });
   }
 }
 /*! --- Copyright (c) 2024 Mootly Obviate -- See /LICENSE.md ------------------ */
- 

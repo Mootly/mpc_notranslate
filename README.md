@@ -10,7 +10,7 @@ The default list contains the following groups:
 * Addresses: `address`
 * Citations: `cite`
 * Code elements: `code, kbd, pre, samp, var`
-* Elements in other than the main language (default is English): `*[lang]:not([lang=en-US])`.
+* Elements in other than the main language (default is English): `*[lang]:not(:lang(en))`.
 
 ## Dependencies
 
@@ -22,15 +22,16 @@ This was written in TypeScript and exported to ES6 to allow support for browsers
 
 The files in this set are as follows:
 
-| path                    | description
-| ------------            | ------------
-| LICENSE.md              | License notice ( [MIT](https://mit-license.org) ).
-| README.md               | This document.
-| mpc_sticky.ts           | The class definition in TypeScript.
-| mpc_sticky.js           | The class definition in ES6.
-| mpc_sticky.min.js       | Minified version.
-| mpc_sticky.min.js.map   | Map file.
-| _invoke.js              | Example implementation code.
+| path                       | description                                        |
+| -------------------------- | -------------------------------------------------- |
+| LICENSE.md                 | License notice ( [MIT](https://mit-license.org) ). |
+| README.md                  | This document.                                     |
+| mpc_notranslate.ts         | The class definition in TypeScript.                |
+| mpc_notranslate.js         | The class definition in ES6.                       |
+| mpc_notranslate.min.js     | Minified version.                                  |
+| mpc_notranslate.min.js.map | Map file.                                          |
+| tsconfig.json              | Example TS > ES 6 config setting.                  |
+| _invoke.js                 | Example implementation code.                       |
 
 ## Installation
 
@@ -38,53 +39,28 @@ Download this repo, or just the script, and add it to the script library for you
 
 This script has no external dependencies.
 
+### Compiling from the TypeScript
+
+To save to ES6 in the current folder, assuming you have the correct libraries installed, run the following in this folder:
+
+`tsc -p tsconfig.json`
+
 ## Configuration
 
 ### Assumptions
 
-Fixed and positoned elements have a higher stacking order. If there are other positioned elements on the page, remember to use z-index to keep fixed elements on top of others. Recommended z-index for `fixed` is `sticky`+1.
+This script assumes the default language for the page is English. You can override this by changing the `*[lang]:not(:lang(en))` string in the list of exceptions.
 
-The script adjusts the top margin on the element following the sticky element to prevent scroll jump. To avoid problems with olders browsers, remember to set a top margin in the CSS for the post-sticky elements.
-
-The sticky element should have a top margin of zero. The script does **NOT** set/unset the position property in CSS. This should be done manually for the `fixed` class. If using "stack" instead of layer, the script will set the top position for all subsequent fixed elements to the sum of heights of the previous fixed elements.
-
-Sticky elements should have an opaque background because other content will be passing behind them on scroll.
+Using tyhe pseudo-class is preferred for `:not(:lang(en))` since it does smart matching. The string "en" will also match "en-US" and other English language designations. The selector `[lang=en]` will only match "en".
 
 ### Recommended HTML Code
 
-Use a &lt;div /&gt; element to make it easier to manage margins without messing up the contents.
-
-Add a class to mark the next immediate element. The script grabs the next programmatically, but it is nice to have self-documenting page elements.
+Set a default language on the html conatiner or the body and override from there.
 
 ```html
-<div class="sticky"><h2>Some Header</h2></div>
-<div class="post-sticky">
-  <p>Some post sticky content.</p>
-</div>
-```
-
-### Recommended CSS
-
-Set appropriate `z-index` and `margin-top` values for the impacted elements.
-
-Set the CSS for the `locked` class to position fixed with a top of zero.
-
-```css
-.sticky {
-  z-index   : _stickyZidx_;
-  margin    : 0;
-  ⋮
-}
-.sticky.locked {
-  position  : fixed;
-  top       : 0px;
-  z-index   : _stickyZidx_ + 1;
-  ⋮
-}
-.post-sticky {
-  margin-top: 1.0em;
-  ⋮
-}
+<html lang="en">
+Or
+<body lang="en">
 ```
 
 ### Parameters
@@ -99,13 +75,16 @@ Set the CSS for the `locked` class to position fixed with a top of zero.
 
 Use the `mp` namespace to help avoid collisions.
 
+                    // All scripts in the mp namespace to avoid collisions.     *
+ let mp = {
+  sticky: new mpc_notranslate(notrans_auto, notrans_list),
+
 ```js
-const sticky_class  = 'sticky';
-const sticky_method = 'stack';
-const sticky_auto   = true;
+const notrans_list  = 'abbr, acronym, address, cite, code, kbd, pre, samp, var, *[lang]:not(:lang(en))';
+const notrans_auto  = true;
 
 let mp = {
-  sticky: new constructor(sticky_class, sticky_method, sticky_auto),
+  notranslate: new constructor(notrans_list, notrans_auto),
   ⋮
 };
 ```
@@ -113,6 +92,5 @@ let mp = {
 If auto is set to false, manually invoke the listeners.
 
 ```js
-window.addEventListener('load', (e) => { mp.sticky.stickybox(); });
-window.addEventListener('scroll', (e) => { mp.sticky.stickybox(); });
+window.addEventListener('load', (e) => { mp.notranslate.protect(); });
 ```
