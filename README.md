@@ -20,16 +20,16 @@ This was written in TypeScript and exported to ES2020.
 
 The files in this set are as follows:
 
-| path                       | description                                        |
-| -------------------------- | -------------------------------------------------- |
-| LICENSE.md                 | License notice ( [MIT](https://mit-license.org) ). |
-| README.md                  | This document.                                     |
-| mpc_notranslate.ts         | The class definition in TypeScript.                |
-| mpc_notranslate.js         | The class definition in ES6.                       |
-| mpc_notranslate.min.js     | Minified version.                                  |
-| mpc_notranslate.min.js.map | Map file.                                          |
-| tsconfig.json              | Example TS > ES2020 config setting.                |
-| _invoke.js                 | Example implementation code.                       |
+| path                   | description                                        |
+| ---------------------- | -------------------------------------------------- |
+| LICENSE.md             | License notice ( [MIT](https://mit-license.org) ). |
+| README.md              | This document.                                     |
+| notranslate.ts         | The class definition in TypeScript.                |
+| notranslate.js         | The class definition in ES6.                       |
+| notranslate.min.js     | Minified version.                                  |
+| notranslate.min.js.map | Map file.                                          |
+| tsconfig.json          | Example TS > ES2020 config setting.                |
+| _invoke.js             | Example implementation code.                       |
 
 ## Installation
 
