@@ -63,26 +63,22 @@ Or
 
 ### Parameters
 
-| name        | type        | default     | description
-| ----------  | ----------  | ----------  | ----------
-| pBox        | string      | sticky      | Class of sticky slements.
-| pMethod     | string      | stack       | Whether to stack or layer.
-| pAuto       | boolean     | true        | Whether to automatically create listeners.
+| name    | type    | default | description                                |
+| ------- | ------- | ------- | ------------------------------------------ |
+| pBox    | string  | sticky  | Class of sticky slements.                  |
+| pMethod | string  | stack   | Whether to stack or layer.                 |
+| pAuto   | boolean | true    | Whether to automatically create listeners. |
 
 ### Coding Example
 
 Use the `mp` namespace to help avoid collisions.
-
-                    // All scripts in the mp namespace to avoid collisions.     *
- let mp = {
-  sticky: new mpc_notranslate(notrans_auto, notrans_list),
 
 ```js
 const notrans_list  = 'abbr, acronym, address, cite, code, kbd, pre, samp, var, *[lang]:not(:lang(en))';
 const notrans_auto  = true;
 
 let mp = {
-  notranslate: new constructor(notrans_list, notrans_auto),
+  notranslate: new mpc_notranslate(notrans_list, notrans_auto),
   ⋮
 };
 ```
