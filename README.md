@@ -86,5 +86,5 @@ let mp = {
 If auto is set to false, manually invoke the listeners.
 
 ```js
-window.addEventListener('load', (e) => { mp.notranslate.protect(); });
+window.addEventListener('DOMContentLoaded', (e) => { mp.notranslate.protect(); });
 ```

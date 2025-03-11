@@ -1,6 +1,6 @@
 /* ---------------------------------------------------------------------------- */
 /*! --- Implementation Examples Scripts --------------------------------------- *
- * Copyright (c) 2024 Mootly Obviate -- See /LICENSE.md
+ * Copyright (c) 2025 Mootly Obviate -- See /LICENSE.md
  * ---------------------------------------------------------------------------- */
                     // Notranslate variables                                    *
                     // All are optional if you want to use the defaults         *
@@ -12,5 +12,5 @@ const notrans_auto  = true;
 // ...
 };
                     // only invoke these manually if auto=false                 *
-// window.addEventListener('load',     (e) => { mp.notranslate.protect(); });
+// window.addEventListener('DOMContentLoaded', (e) => { mp.notranslate.protect(); });
 /* ---------------------------------------------------------------------------- */

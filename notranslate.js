@@ -1,8 +1,8 @@
 /** --- No Translation Tweak -------------------------------------------------- *
- * mpc_notranslate 1.0.0
- @copyright 2024 Mootly Obviate -- See /LICENSE.md
+ * mpc_notranslate 1.0.1
+ @copyright 2025 Mootly Obviate -- See /LICENSE.md
  @license   MIT
- @version   1.0.0
+ @version   1.0.1
  * ---------------------------------------------------------------------------- *
  * A quick cleanup function to set no translate on specified elements..
  * ---------------------------------------------------------------------------- *
@@ -15,18 +15,19 @@
  *   ...
  * };
  * if auto set to false, use an event listener
- * window.addEventListener('load', (e) => { mp.notranslate.protect(););
+ * window.addEventListener('DOMContentLoaded', (e) => { mp.notranslate.protect(););
  * --- Revision History ------------------------------------------------------- *
+ * 2025-03-10 | Added DOMContentLoaded handler to avoid edge cases.
  * 2025-02-25 | Finished draft of typescript version.
  * ---------------------------------------------------------------------------- */
 class mpc_notranslate {
   constructor(pList = 'abbr, acronym, address, cite, code, kbd, pre, samp, var, *[lang]:not(:lang(en))', pAuto = true) {
     this.protList = pList;
     if (pAuto) {
-      this.protect();
+      window.addEventListener('DOMContentLoaded', (ev) => { this.protect(); });
     }
   }
-  // The lone method.                                         *
+                    // The lone method.                                         *
   protect() {
     this.protElems = document.querySelectorAll(this.protList);
     this.protElems?.forEach((el) => {
@@ -35,4 +36,4 @@ class mpc_notranslate {
     });
   }
 }
-/*! --- Copyright (c) 2024 Mootly Obviate -- See /LICENSE.md ------------------ */
+/*! --- Copyright (c) 2025 Mootly Obviate -- See /LICENSE.md ------------------ */
