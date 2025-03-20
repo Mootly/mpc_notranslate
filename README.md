@@ -25,7 +25,7 @@ The files in this set are as follows:
 | LICENSE.md             | License notice ( [MIT](https://mit-license.org) ). |
 | README.md              | This document.                                     |
 | notranslate.ts         | The class definition in TypeScript.                |
-| notranslate.js         | The class definition in ES6.                       |
+| notranslate.js         | The class definition in ES2020.                    |
 | notranslate.min.js     | Minified version.                                  |
 | notranslate.min.js.map | Map file.                                          |
 | tsconfig.json          | Example TS > ES2020 config setting.                |
