@@ -1,5 +1,7 @@
 # MoosePlum No Translation Tweak
 
+Repo: [Mootly/mpc_notranslate](https://github.com/Mootly/mpc_nottranslate)
+
 This is a quick script to add no translation requests to elements. All it does, **THE ONLY THING** it does is add a `notranslate` class and a `translate="no"` attribute to designated elements.
 
 It accepts a comma-spearated list of valid CSS selectors.
@@ -22,6 +24,7 @@ The files in this set are as follows:
 
 | path                   | description                                        |
 | ---------------------- | -------------------------------------------------- |
+| CHANGELOG.md           | The changelog for this utility.                    |
 | LICENSE.md             | License notice ( [MIT](https://mit-license.org) ). |
 | README.md              | This document.                                     |
 | notranslate.ts         | The class definition in TypeScript.                |
